@@ -1,0 +1,94 @@
+body{
+    color:rgb(12, 15, 18);
+
+}
+.choice-container{
+    display: flex;
+    margin-bottom: 0.8rem;
+    width: 100%;
+    border-radius: 10rem;
+    background: rgb(195, 27, 195);
+    font-size: 3rem;
+    min-width:80rem;
+}
+.choice-container:hover{
+    cursor: pointer;
+    box-shadow:0 0.4rem 1.4rem 0 rgb(202, 27, 202, 0.5);
+    transform: scale(1.02);
+    transform: transform 100ms;
+}
+.choice-prefix{
+    padding: 2rem 2.5rem;
+    color:rgb(7, 5, 5);
+
+}
+
+.choice-text{
+    padding: 2rem;
+    width:100%;
+}
+
+.correct{
+    background:linear-gradient(32deg,rgb(31, 194, 31) 0%, rgb(46, 151, 46)100% );
+}
+
+.incorrect{
+    background:linear-gradient(32deg,rgb(183, 17, 14) 0%, rgb(203, 19, 19)100% );
+}
+
+/* heads up display */
+ 
+
+#countdownTimer{
+    display: flex;
+   
+    justify-content: space-between;
+} 
+
+/* this styles the number score */
+#scoreKeeper{
+     display: flex;
+   
+     justify-content:end;
+}
+
+.hud-prefix{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.hud-main-text{
+    text-align: center;
+}
+
+#AnswerResponse{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#quizContainer{
+    margin-top: 20vw;
+}
+
+.highscore-class{
+    font-size: 4rem;
+    text-align: center;
+    
+   
+}
+
+
+
+#timer{
+font-size: xx-large;
+color: rgb(70, 7, 134);
+}
+
+@media screen and (max-width: 768px){
+    .choice-container{
+        min-width:40rem;
+    }
+    .container{
+        padding:20rem;
+    }
+}
