@@ -1,5 +1,5 @@
 :root {
-    background-color: rgb(249, 245, 249);
+    background-color: rgb(223, 218, 223);
 }
 
 * {
@@ -121,6 +121,16 @@ text-align: center;
 
 #saveScoreBtn{
     border:none;
+}
+
+#scoreKeeper {
+    font-size: xx-large;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20rem;
+    margin-top: 20rem;
+    color: purple;
+    font-weight: 600;
 }
 
 

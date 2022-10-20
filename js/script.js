@@ -5,23 +5,22 @@ var scoreText = document.querySelector("#score");
 var startBtn = document.querySelector("#startBtn");
 var score = document.querySelector("#score");
 var choice1 = document.getElementById("choice1");
-  console.log(choice1);
-  var choice2 = document.getElementById("choice2");
-  var choice3 = document.getElementById("choice3");
-  var choice4 = document.getElementById("choice4");
-  var question = document.getElementById("question");
+console.log(choice1);
+var choice2 = document.getElementById("choice2");
+var choice3 = document.getElementById("choice3");
+var choice4 = document.getElementById("choice4");
+var question = document.getElementById("question");
 var highScoresList = document.querySelector("#highScoresList");
 var finalScoreGlobal = 0;
 var scores = JSON.parse(localStorage.getItem("scores")) || [];
 console.log(scores);
 
-
 // this starts the game and then fires of the set time function on start of the game
 function startGame() {
-setTime();
+  setTime();
 }
 
-// this my array of questions 
+// this my array of questions
 let myQuestions = [
   {
     questions:
@@ -70,7 +69,6 @@ let myQuestions = [
   },
 ];
 
-
 // this is the timer that starts when you are taken to the game page
 var timeRemaining = true;
 var timeStart = false;
@@ -96,7 +94,6 @@ function setTime() {
       time = 0;
       document.getElementById("timer").innerHTML = time;
     }
-    
   }, 1000);
 }
 
@@ -104,9 +101,6 @@ function setTime() {
 var i = 0;
 
 function setQuizQuestions() {
-  
-  
-  
   question.textContent = myQuestions[i].questions;
   choice1.textContent = myQuestions[i].choice1;
   choice2.textContent = myQuestions[i].choice2;
@@ -114,34 +108,26 @@ function setQuizQuestions() {
   choice4.textContent = myQuestions[i].choice4;
 }
 
-
-
 setQuizQuestions();
 startGame();
-
-
 
 // this is the eventlistener that fires off when the user is playing the game and clicks on the answers
 choice1.addEventListener("click", function (event) {
   var clicked = event.target;
   clicked.getAttribute("id");
-  
-  
+
   answer = myQuestions[i].answer;
-  
-  
+
   if (myQuestions[i].answer === clicked.textContent) {
     // display message to user for 1  second stating if the answer is correct or incorrect
     document.getElementById("AnswerResponse").innerHTML = "Correct";
-    
-    score++;
+
+   
     // display updated score progress
-  
   } else {
     secondsLeft -= 5;
     // when user answers a question incorrectly, subtract from the time
     document.getElementById("AnswerResponse").innerHTML = "wrong";
-    
   }
   if (i >= myQuestions.length - 1) {
     endQuiz();
@@ -155,19 +141,16 @@ choice2.addEventListener("click", function (event) {
   event.stopPropagation();
   var clicked = event.target;
   clicked.getAttribute("id");
-  
- 
+
   answer = myQuestions[i].answer;
- 
+
   if (myQuestions[i].answer === clicked.textContent) {
     document.getElementById("AnswerResponse").innerHTML = "Correct";
-    
-    score++;
+
    
   } else {
     secondsLeft -= 5;
     document.getElementById("AnswerResponse").innerHTML = "Wrong";
-   
   }
   if (i >= myQuestions.length - 1) {
     endQuiz();
@@ -183,16 +166,14 @@ choice3.addEventListener("click", function (event) {
   var clicked = event.target;
   clicked.getAttribute("id");
   answer = myQuestions[i].answer;
-  
+
   if (myQuestions[i].answer === clicked.textContent) {
     document.getElementById("AnswerResponse").innerHTML = "Correct";
-    
-    score++;
-    
+
+   
   } else {
     secondsLeft -= 5;
     document.getElementById("AnswerResponse").innerHTML = "Wrong";
-    
   }
   if (i >= myQuestions.length - 1) {
     endQuiz();
@@ -208,16 +189,14 @@ choice4.addEventListener("click", function (event) {
   clicked.getAttribute("id");
 
   answer = myQuestions[i].answer;
- 
+
   if (myQuestions[i].answer === clicked.textContent) {
     document.getElementById("AnswerResponse").innerHTML = "Correct";
+
     
-    score++;
-   
   } else {
     secondsLeft -= 5;
     document.getElementById("AnswerResponse").innerHTML = "Wrong";
-    
   }
   if (i >= myQuestions.length - 1) {
     endQuiz();
@@ -227,90 +206,52 @@ choice4.addEventListener("click", function (event) {
   }
 });
 
+// need this function if i can not render my own
 
+function endQuiz() {
+  var userName = prompt("enter your initials");
 
+  // dont want a prompt
 
-// need this function if i can not render my own 
+  finalScoreGlobal = userName + ": " + secondsLeft;
+  scores.push(finalScoreGlobal);
+  localStorage.setItem("score", finalScoreGlobal);
+  localStorage.setItem("scores", JSON.stringify(scores));
+  window.location.href = "./end.html";
+}
 
-
-// function endQuiz() {
-//  var userName = prompt("enter your initials");
-  
-// // dont want a prompt 
-
-
-
-//   finalScoreGlobal = userName + ": " + secondsLeft;
-//   scores.push(finalScoreGlobal);
-//   localStorage.setItem("score", finalScoreGlobal);
-//   localStorage.setItem("scores", JSON.stringify(scores));
-//    window.location.href = "/end.html";
-// }
-
-
-
-
-
-
-
-// trying to bring the code into the one js file 
-
-// var score = document.querySelector("#finalScore");
-// var highScores = document.getElementById("highScoreList")
-// var score = document.querySelector("#score");
-// // score.textContent= localStorage.getItem("score")
-// var scoresList = JSON.parse(localStorage.getItem("scores"))
-// var li = document.createElement('li')
-
-// function highScores(){
-// for (let i = 0; i < scoresList.length; i++) {
-//   score.textContent= localStorage.getItem("score")
-//   scoresList = JSON.parse(localStorage.getItem("scores"))
-//   li = document.createElement('li')
-//     li.textContent = scoresList[i]
-//     highScores.appendChild(li)
-//     window.location.href = "/highScore.html";
-// }
-// // score.textContent= localStorage.getItem("score")
-
-// }
 // highScores()
 
-var saveButton = document.querySelector("#saveScoreBtn");
-var userName= document.querySelector("#username");
-var userPasswordSpan = document.querySelector("#user-password");
+// var saveButton = document.querySelector("#saveScoreBtn");
+// var userName= document.querySelector("#username");
+// var userPasswordSpan = document.querySelector("#user-password");
 
-// get the username to store in the local storage and retrieve info 
-function endQuiz() {
-  // var userName = prompt("enter your initials");
-  
-// don't want a prompt 
+// get the username to store in the local storage and retrieve info
+// function endQuiz() {
+//   var userName = prompt("enter your initials");
+
 // var getName= localStorage.getItem("username", getName);
 // userName.textContent = getName;
-window.location.href = "/end.html";
-   
-}
+// window.location.href = "/end.html";
 
-saveButton.addEventListener("click", function() {
-  // event.preventDefault();
-  
-  // var getName = document.querySelector("#userName").value;
-  console.log( "clicked")
-  //  localStorage and render the last registered user
-  //   localStorage.setItem("username", getName);
-  //   userName.textContent = getName
-  //   finalScoreGlobal = userName + ": " + secondsLeft;
-  //   scores.push(finalScoreGlobal);
-  // localStorage.setItem("score", finalScoreGlobal);
-  // localStorage.setItem("scores", JSON.stringify(scores));
-  
-  //  window.location.href = "/end.html";
-  
-  // endQuiz()
-  
-}
-);
+// }
 
+// saveButton.addEventListener("click", function() {
+//   // event.preventDefault();
 
+//   // var getName = document.querySelector("#userName").value;
+//   console.log( "clicked")
+//  localStorage and render the last registered user
+//   localStorage.setItem("username", getName);
+//   userName.textContent = getName
+//   finalScoreGlobal = userName + ": " + secondsLeft;
+//   scores.push(finalScoreGlobal);
+// localStorage.setItem("score", finalScoreGlobal);
+// localStorage.setItem("scores", JSON.stringify(scores));
 
+//  window.location.href = "/end.html";
 
+// endQuiz()
+
+// }
+// );

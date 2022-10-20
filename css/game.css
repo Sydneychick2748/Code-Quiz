@@ -1,5 +1,5 @@
 body{
-    color:rgb(12, 15, 18);
+    color:rgb(26, 31, 36);
 
 }
 .choice-container{
@@ -7,7 +7,8 @@ body{
     margin-bottom: 0.8rem;
     width: 100%;
     border-radius: 10rem;
-    background: rgb(195, 27, 195);
+    background: linear-gradient(90deg, rgb(97, 51, 195) 0%, rgb(134, 12, 204) 100% );
+
     font-size: 3rem;
     min-width:80rem;
 }
@@ -28,13 +29,6 @@ body{
     width:100%;
 }
 
-.correct{
-    background:linear-gradient(32deg,rgb(31, 194, 31) 0%, rgb(46, 151, 46)100% );
-}
-
-.incorrect{
-    background:linear-gradient(32deg,rgb(183, 17, 14) 0%, rgb(203, 19, 19)100% );
-}
 
 /* heads up display */
  
