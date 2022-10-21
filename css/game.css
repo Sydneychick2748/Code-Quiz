@@ -2,6 +2,7 @@ body{
     color:rgb(26, 31, 36);
 
 }
+/* these  are the main container's  */
 .choice-container{
     display: flex;
     margin-bottom: 0.8rem;
@@ -30,7 +31,6 @@ body{
 }
 
 
-/* heads up display */
  
 
 #countdownTimer{
@@ -71,13 +71,14 @@ body{
    
 }
 
-
+this is the timer 
 
 #timer{
 font-size: xx-large;
 color: rgb(70, 7, 134);
 }
 
+/* this is for mobile devices */
 @media screen and (max-width: 768px){
     .choice-container{
         min-width:40rem;

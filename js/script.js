@@ -1,4 +1,4 @@
-// var question = document.querySelector("#question");
+// these are the variables that get my id and classes from the html pages
 var choices = document.querySelectorAll(".choice-text");
 var progressText = document.querySelector("#progressText");
 var scoreText = document.querySelector("#score");
@@ -12,6 +12,7 @@ var choice3 = document.getElementById("choice3");
 var choice4 = document.getElementById("choice4");
 var i = 0;
 
+// these are my array of questions
 let myQuestions = [
   {
     questions:
@@ -60,6 +61,7 @@ let myQuestions = [
   },
 ];
 
+// this sets the questions to the page and the gets the score
 var finalScoreGlobal = 0;
 
 var scores = JSON.parse(localStorage.getItem("scores")) || [];
@@ -74,20 +76,8 @@ function setQuizQuestions() {
     choice4.textContent = myQuestions[i].choice4;
   }
 }
-// var scoresList = JSON.parse(localStorage.getItem("scores")) || [];
-
-// console.log(scores);
-
-// this starts the game and then fires of the set time function on start of the game
-
-// function startGame() {
-//   //  setTime();
-//   startGame();
-// }
 
 setQuizQuestions();
-
-// this my array of questions
 
 // this is the timer that starts when you are taken to the game page
 var timeRemaining = true;
@@ -96,7 +86,7 @@ var secondsLeft = 85;
 
 var timerInterval;
 
-// Sets interval in variablable
+// Sets interval in variable
 var timeEl = document.querySelector("#timer");
 
 if (timeEl) {
@@ -125,41 +115,36 @@ function setTime() {
 }
 
 // QUESTIONS FUNCTION: display questions and multiple-choice answers
-
-// this is the eventlistener that fires off when the user is playing the game and clicks on the answers
-
-const quizContainer = document
-.querySelector("#quizContainer");
+const quizContainer = document.querySelector("#quizContainer");
 
 if (quizContainer) {
-  quizContainer
-    .addEventListener("click", function (event) {
-      if (event.target.matches(".choice-text")) {
-        event.stopPropagation();
-  
-        var clicked = event.target;
-        clicked.getAttribute("id");
-        answer = myQuestions[i].answer;
-  
-        if (myQuestions[i].answer === clicked.textContent) {
-          document.getElementById("AnswerResponse").innerHTML = "Correct";
-        } else {
-          secondsLeft -= 5;
-          document.getElementById("AnswerResponse").innerHTML = "Wrong";
-        }
-  
-        i++;
-  
-        if (i === myQuestions.length) {
-          endQuiz();
-        } else {
-          setQuizQuestions();
-        }
+  quizContainer.addEventListener("click", function (event) {
+    if (event.target.matches(".choice-text")) {
+      event.stopPropagation();
+
+      var clicked = event.target;
+      clicked.getAttribute("id");
+      answer = myQuestions[i].answer;
+
+      if (myQuestions[i].answer === clicked.textContent) {
+        document.getElementById("AnswerResponse").innerHTML = "Correct";
+      } else {
+        secondsLeft -= 5;
+        document.getElementById("AnswerResponse").innerHTML = "Wrong";
       }
-    });
+
+      i++;
+
+      if (i === myQuestions.length) {
+        endQuiz();
+      } else {
+        setQuizQuestions();
+      }
+    }
+  });
 }
 
-// need this function if i can not render my own
+// this is the function that ends the quiz
 
 function endQuiz() {
   clearInterval(timerInterval);
@@ -167,11 +152,13 @@ function endQuiz() {
   finalScoreGlobal = userName + ": " + secondsLeft;
   scores.push(finalScoreGlobal);
 
+  // this is an object that stores the data as as object
   const data = {
     name: userName,
     score: secondsLeft,
   };
 
+  // this gets the data and sets the data in local Storage
   let oldData = JSON.parse(localStorage.getItem("data")) || [];
   oldData.push(data);
   localStorage.setItem("data", JSON.stringify(oldData));
@@ -179,26 +166,20 @@ function endQuiz() {
 }
 
 var viewHighScore = document.getElementById("highScores");
-console.log (viewHighScore, "higscores")
 if (viewHighScore) {
   console.log("clicked");
   var highScores = document.getElementById("highScoreList");
-  console.log(highScores, "hi")
+  console.log(highScores, "hi");
   let oldData = JSON.parse(localStorage.getItem("data")) || [];
-
+  // looping threw the stored data and making a list item in the html to show my scores
   for (let i = 0; i < oldData.length; i++) {
     var li = document.createElement("li");
     li.textContent = oldData[i].name + ": " + oldData[i].score;
     highScores.appendChild(li);
   }
 }
-//document.getElementById("highScoreList").innerHTML = highScores;
-//grab the HTML element for the list
 
-// highScore.textContent = localStorage.getItem("data");
-// scoresList.textContent = localStorage.getItem("scores");
-
-
+// this clears the data
 
 var clearScoreButton = document.getElementById("clearScoreBtn");
 if (clearScoreButton) {
@@ -208,8 +189,8 @@ if (clearScoreButton) {
     secondsLeft = "";
     scoresList = "";
     console.log(clearScoreButton, "clicked");
-    
-    localStorage.setItem("data", '[]');
+
+    localStorage.setItem("data", "[]");
     var highScores = document.getElementById("highScoreList");
     highScores.innerHTML = "";
   });
