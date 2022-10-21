@@ -4,23 +4,14 @@ var progressText = document.querySelector("#progressText");
 var scoreText = document.querySelector("#score");
 var startBtn = document.querySelector("#startBtn");
 var score = document.querySelector("#score");
+var highScoresList = document.querySelector("#highScoresList");
+
 var choice1 = document.getElementById("choice1");
-console.log(choice1);
 var choice2 = document.getElementById("choice2");
 var choice3 = document.getElementById("choice3");
 var choice4 = document.getElementById("choice4");
-var question = document.getElementById("question");
-var highScoresList = document.querySelector("#highScoresList");
-var finalScoreGlobal = 0;
-var scores = JSON.parse(localStorage.getItem("scores")) || [];
-console.log(scores);
+var i = 0;
 
-// this starts the game and then fires of the set time function on start of the game
-function startGame() {
-  setTime();
-}
-
-// this my array of questions
 let myQuestions = [
   {
     questions:
@@ -69,16 +60,53 @@ let myQuestions = [
   },
 ];
 
+var finalScoreGlobal = 0;
+
+var scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+function setQuizQuestions() {
+  var question = document.getElementById("question");
+  if (question) {
+    question.textContent = myQuestions[i].questions;
+    choice1.textContent = myQuestions[i].choice1;
+    choice2.textContent = myQuestions[i].choice2;
+    choice3.textContent = myQuestions[i].choice3;
+    choice4.textContent = myQuestions[i].choice4;
+  }
+}
+// var scoresList = JSON.parse(localStorage.getItem("scores")) || [];
+
+// console.log(scores);
+
+// this starts the game and then fires of the set time function on start of the game
+
+// function startGame() {
+//   //  setTime();
+//   startGame();
+// }
+
+setQuizQuestions();
+
+// this my array of questions
+
 // this is the timer that starts when you are taken to the game page
 var timeRemaining = true;
 var timeStart = false;
-var timeEl = document.querySelector("#timer");
 var secondsLeft = 85;
 
+var timerInterval;
+
+// Sets interval in variablable
+var timeEl = document.querySelector("#timer");
+
+if (timeEl) {
+  setTime();
+}
+
 function setTime() {
-  // Sets interval in variable
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     secondsLeft--;
+
     timeEl.textContent = secondsLeft;
 
     if (secondsLeft === 0) {
@@ -87,7 +115,6 @@ function setTime() {
       timeEl.textContent = " ";
       // score = timeEl;
       localStorage.setItem("score", score);
-      console.log(localStorage);
 
       // Calls function to create and append image
       endQuiz();
@@ -98,160 +125,92 @@ function setTime() {
 }
 
 // QUESTIONS FUNCTION: display questions and multiple-choice answers
-var i = 0;
-
-function setQuizQuestions() {
-  question.textContent = myQuestions[i].questions;
-  choice1.textContent = myQuestions[i].choice1;
-  choice2.textContent = myQuestions[i].choice2;
-  choice3.textContent = myQuestions[i].choice3;
-  choice4.textContent = myQuestions[i].choice4;
-}
-
-setQuizQuestions();
-startGame();
 
 // this is the eventlistener that fires off when the user is playing the game and clicks on the answers
-choice1.addEventListener("click", function (event) {
-  var clicked = event.target;
-  clicked.getAttribute("id");
 
-  answer = myQuestions[i].answer;
+const quizContainer = document
+.querySelector("#quizContainer");
 
-  if (myQuestions[i].answer === clicked.textContent) {
-    // display message to user for 1  second stating if the answer is correct or incorrect
-    document.getElementById("AnswerResponse").innerHTML = "Correct";
-
-   
-    // display updated score progress
-  } else {
-    secondsLeft -= 5;
-    // when user answers a question incorrectly, subtract from the time
-    document.getElementById("AnswerResponse").innerHTML = "wrong";
-  }
-  if (i >= myQuestions.length - 1) {
-    endQuiz();
-  } else {
-    i++;
-    setQuizQuestions();
-  }
-});
-
-choice2.addEventListener("click", function (event) {
-  event.stopPropagation();
-  var clicked = event.target;
-  clicked.getAttribute("id");
-
-  answer = myQuestions[i].answer;
-
-  if (myQuestions[i].answer === clicked.textContent) {
-    document.getElementById("AnswerResponse").innerHTML = "Correct";
-
-   
-  } else {
-    secondsLeft -= 5;
-    document.getElementById("AnswerResponse").innerHTML = "Wrong";
-  }
-  if (i >= myQuestions.length - 1) {
-    endQuiz();
-  } else {
-    i++;
-    setQuizQuestions();
-  }
-});
-
-choice3.addEventListener("click", function (event) {
-  event.stopPropagation();
-
-  var clicked = event.target;
-  clicked.getAttribute("id");
-  answer = myQuestions[i].answer;
-
-  if (myQuestions[i].answer === clicked.textContent) {
-    document.getElementById("AnswerResponse").innerHTML = "Correct";
-
-   
-  } else {
-    secondsLeft -= 5;
-    document.getElementById("AnswerResponse").innerHTML = "Wrong";
-  }
-  if (i >= myQuestions.length - 1) {
-    endQuiz();
-  } else {
-    i++;
-    setQuizQuestions();
-  }
-});
-
-choice4.addEventListener("click", function (event) {
-  event.stopPropagation();
-  var clicked = event.target;
-  clicked.getAttribute("id");
-
-  answer = myQuestions[i].answer;
-
-  if (myQuestions[i].answer === clicked.textContent) {
-    document.getElementById("AnswerResponse").innerHTML = "Correct";
-
-    
-  } else {
-    secondsLeft -= 5;
-    document.getElementById("AnswerResponse").innerHTML = "Wrong";
-  }
-  if (i >= myQuestions.length - 1) {
-    endQuiz();
-  } else {
-    i++;
-    setQuizQuestions();
-  }
-});
+if (quizContainer) {
+  quizContainer
+    .addEventListener("click", function (event) {
+      if (event.target.matches(".choice-text")) {
+        event.stopPropagation();
+  
+        var clicked = event.target;
+        clicked.getAttribute("id");
+        answer = myQuestions[i].answer;
+  
+        if (myQuestions[i].answer === clicked.textContent) {
+          document.getElementById("AnswerResponse").innerHTML = "Correct";
+        } else {
+          secondsLeft -= 5;
+          document.getElementById("AnswerResponse").innerHTML = "Wrong";
+        }
+  
+        i++;
+  
+        if (i === myQuestions.length) {
+          endQuiz();
+        } else {
+          setQuizQuestions();
+        }
+      }
+    });
+}
 
 // need this function if i can not render my own
 
 function endQuiz() {
+  clearInterval(timerInterval);
   var userName = prompt("enter your initials");
-
-  // dont want a prompt
-
   finalScoreGlobal = userName + ": " + secondsLeft;
   scores.push(finalScoreGlobal);
-  localStorage.setItem("score", finalScoreGlobal);
-  localStorage.setItem("scores", JSON.stringify(scores));
+
+  const data = {
+    name: userName,
+    score: secondsLeft,
+  };
+
+  let oldData = JSON.parse(localStorage.getItem("data")) || [];
+  oldData.push(data);
+  localStorage.setItem("data", JSON.stringify(oldData));
   window.location.href = "./end.html";
 }
 
-// highScores()
+var viewHighScore = document.getElementById("highScores");
+console.log (viewHighScore, "higscores")
+if (viewHighScore) {
+  console.log("clicked");
+  var highScores = document.getElementById("highScoreList");
+  console.log(highScores, "hi")
+  let oldData = JSON.parse(localStorage.getItem("data")) || [];
 
-// var saveButton = document.querySelector("#saveScoreBtn");
-// var userName= document.querySelector("#username");
-// var userPasswordSpan = document.querySelector("#user-password");
+  for (let i = 0; i < oldData.length; i++) {
+    var li = document.createElement("li");
+    li.textContent = oldData[i].name + ": " + oldData[i].score;
+    highScores.appendChild(li);
+  }
+}
+//document.getElementById("highScoreList").innerHTML = highScores;
+//grab the HTML element for the list
 
-// get the username to store in the local storage and retrieve info
-// function endQuiz() {
-//   var userName = prompt("enter your initials");
+// highScore.textContent = localStorage.getItem("data");
+// scoresList.textContent = localStorage.getItem("scores");
 
-// var getName= localStorage.getItem("username", getName);
-// userName.textContent = getName;
-// window.location.href = "/end.html";
 
-// }
 
-// saveButton.addEventListener("click", function() {
-//   // event.preventDefault();
-
-//   // var getName = document.querySelector("#userName").value;
-//   console.log( "clicked")
-//  localStorage and render the last registered user
-//   localStorage.setItem("username", getName);
-//   userName.textContent = getName
-//   finalScoreGlobal = userName + ": " + secondsLeft;
-//   scores.push(finalScoreGlobal);
-// localStorage.setItem("score", finalScoreGlobal);
-// localStorage.setItem("scores", JSON.stringify(scores));
-
-//  window.location.href = "/end.html";
-
-// endQuiz()
-
-// }
-// );
+var clearScoreButton = document.getElementById("clearScoreBtn");
+if (clearScoreButton) {
+  clearScoreButton.addEventListener("click", function () {
+    highScores = [];
+    score = 0;
+    secondsLeft = "";
+    scoresList = "";
+    console.log(clearScoreButton, "clicked");
+    
+    localStorage.setItem("data", '[]');
+    var highScores = document.getElementById("highScoreList");
+    highScores.innerHTML = "";
+  });
+}
