@@ -82,7 +82,7 @@ setQuizQuestions();
 // this is the timer that starts when you are taken to the game page
 var timeRemaining = true;
 var timeStart = false;
-var secondsLeft = 85;
+var secondsLeft = 75;
 
 var timerInterval;
 

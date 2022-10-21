@@ -133,4 +133,10 @@ text-align: center;
     font-weight: 600;
 }
 
+#highScoreList li {
+    font-size: 2rem;
+    color:rgb(59, 21, 95);
+    font-weight: bold;
+}
+
 
