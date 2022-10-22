@@ -100,6 +100,10 @@ When you click on the highscore button it will take you to the Leadbord were you
 
 
 
+Here is a video link , in this link you can not see the prompt for the input of your initials/name as the prompt dose not show up on the video. 
+
+<iframe src="https://drive.google.com/file/d/1vONzaE_diK83A8ojW_K-2j0WUW4FfRlY/preview" width="640" height="480"></iframe>
+
 
  # Support
 
