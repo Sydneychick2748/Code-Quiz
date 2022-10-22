@@ -50,7 +50,7 @@ THEN a timer starts and I am presented with a question
 
 WHEN I answer a question,THEN I am presented with another question until all questions are complete then the game ends.
 
-<img width="914" alt="Screen Shot 2022-10-22 at 2 09 43 PM" src="https://user-images.githubusercontent.com/87034052/197362546-ae33cea5-e5c7-4303-89dc-b6ac0d43ceb8.png">
+<img width="826" alt="Screen Shot 2022-10-22 at 2 24 32 PM" src="https://user-images.githubusercontent.com/87034052/197362977-79f2c8ee-6044-431d-8c02-3fd19b226a25.png">
 
 
 
@@ -111,7 +111,7 @@ you can email me for extra support at anabennett77@gmail.com
 
 ## License
 
-please refer to the repo 
+please refer to the repo at 
 
 
 
