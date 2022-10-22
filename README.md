@@ -111,7 +111,7 @@ you can email me for extra support at anabennett77@gmail.com
 
 ## License
 
-please refer to the repo at 
+please refer to the repo at https://github.com/Sydneychick2748/Code-Quiz
 
 
 
@@ -120,6 +120,7 @@ please refer to the repo at
 
 ## Features
 
+A speacial feature of this project is you can see see the highschores on the leard baord and you can also clear them . 
 
 
 
