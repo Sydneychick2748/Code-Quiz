@@ -12,7 +12,7 @@ I learned that vanilla javascript is a very powerful language and is also challe
 
 ## Table of Contents
 
-- [Description] (#Description)
+- [Description](#Description)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Support](#support)
