@@ -37,11 +37,8 @@ To set up the development environment and run it, I made a folder in my finder a
  
  
 THEN a timer starts and I am presented with a question
-<img width="588" alt="Screen Shot 2022-10-22 at 1 10 35 PM" src="https://user-images.githubusercontent.com/87034052/197362458-36b940d0-b3b4-42ac-9a31-2dfd702e2fe1.png">
 
-
-
-<img width="969" alt="Screen Shot 2022-10-22 at 1 10 42 PM" src="https://user-images.githubusercontent.com/87034052/197362461-da82fa82-ce38-410f-b2ff-036778901606.png">
+<img width="790" alt="Screen Shot 2022-10-22 at 2 30 35 PM" src="https://user-images.githubusercontent.com/87034052/197363137-5c481000-582f-4728-9f51-bad230b96a1b.png">
 
 
 
@@ -59,6 +56,7 @@ WHEN I answer a question,THEN I am presented with another question until all que
 
 WHEN I answer a question incorrectly, THEN time is subtracted from the clock ,WHEN all questions are answered or the timer reaches 0
 THEN the game is over
+
 
 
 
